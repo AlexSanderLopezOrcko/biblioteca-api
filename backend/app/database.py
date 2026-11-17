@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, inspect, text
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 DB_PATH = Path(__file__).resolve().parent.parent / "biblioteca.db"
@@ -17,3 +17,10 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+def actualizar_tablas():
+    columnas = [c["name"] for c in inspect(engine).get_columns("libros")]
+    if "imagen_url" not in columnas:
+        with engine.begin() as conn:
+            conn.execute(text("ALTER TABLE libros ADD COLUMN imagen_url VARCHAR"))

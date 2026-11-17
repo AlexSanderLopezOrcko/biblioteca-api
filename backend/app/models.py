@@ -30,6 +30,7 @@ class Libro(Base):
     id = Column(Integer, primary_key=True, index=True)
     titulo = Column(String, nullable=False)
     anio = Column(Integer, nullable=True)
+    imagen_url = Column(String, nullable=True)
     autor_id = Column(Integer, ForeignKey("autores.id"), nullable=False)
     categoria_id = Column(Integer, ForeignKey("categorias.id"), nullable=False)
 

@@ -44,6 +44,7 @@ class CategoriaOut(CategoriaBase):
 class LibroBase(BaseModel):
     titulo: str
     anio: Optional[int] = None
+    imagen_url: Optional[str] = None
     autor_id: int
     categoria_id: int
 
@@ -55,6 +56,7 @@ class LibroCreate(LibroBase):
 class LibroUpdate(BaseModel):
     titulo: Optional[str] = None
     anio: Optional[int] = None
+    imagen_url: Optional[str] = None
     autor_id: Optional[int] = None
     categoria_id: Optional[int] = None
 

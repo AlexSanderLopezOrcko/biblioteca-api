@@ -2,11 +2,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 
-from app.database import Base, engine
+from app.database import Base, actualizar_tablas, engine
 from app.routers import autores, categorias, libros
 from app.seed import cargar_datos_iniciales
 
 Base.metadata.create_all(bind=engine)
+actualizar_tablas()
 cargar_datos_iniciales()
 
 app = FastAPI(title="Biblioteca API", version="0.1.0")
